@@ -49,7 +49,7 @@ def search_index():
 
 @app.route('/detail/<string:id>/<p_ref>')
 def detail(id,p_ref):
-    key = 'AIzaSyD_j3p1GZ9FWKt5Do_yRBdi_FvIFgNgqyQ' #APIキー
+    key = '*****************' #APIキー
     url = "https://maps.googleapis.com/maps/api/place/details/json?place_id={}&language=ja&key={}".format(id,key)
     photo = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={}&key={}'.format(p_ref,key)
 
