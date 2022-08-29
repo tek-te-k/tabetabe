@@ -1,0 +1,69 @@
+@charset "UTF-8";
+/* Reset
+----------------------------------------*/
+body {
+  background-color: #faf7f7;
+  color: #333;
+  font-family: "ヒラギノ角ゴ ProN", sans serif;
+  font-size: 16px;
+  margin: 0;
+  overflow-x: hidden;
+  padding: 0;
+  line-height: 16px;
+}
+
+a {
+  color: #35BFFF;
+  text-decoration: none;
+}
+a:hover, a:active {
+  color: #91DCFF;
+}
+
+
+/* Global header
+----------------------------------------*/
+.global-header {
+    background: #faf7f7;
+    border-bottom: 1px solid #cfcaca;
+    box-shadow: 0 1px 1px rgba(58, 58, 58, 0.2);
+    padding: 10px;
+  }
+.global-header h1 {
+  color: #d43638;
+  font-family: "ヒラギノ角ゴ ProN", sans serif;
+  font-size: 20px;
+  line-height: 20px;
+  margin: 0;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+
+}
+.global-header .masthead {
+  float: right;
+  margin: 4px 10px 6px;
+}
+.global-header .btn-pill {
+  border: 1px solid #e6d8d8;
+  border-radius: 2px;
+  display: block;
+  float: left;
+  font-size: 18px;
+  padding: 0 15px;
+}
+.global-header .btn-pill:hover {
+  background: #f0e7e7;
+  color: #fa3599;
+}
+
+/*imgholder
+----------------------------------------*/
+.imgholder  {
+  text-align: center;
+}
+
+.imgholder .food{
+    width: 100%;
+    height: auto;
+}
