@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html',)
+    return render_template('main.html',)
 
 @app.route('/search_index', methods=['GET', 'POST'])
 def search_index():
@@ -43,9 +43,9 @@ def search_index():
                 p_values.append(p_value)
                 photo = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={}&key={}'.format(p_value,key)
                 photos.append(photo)
-        return render_template('index.html',results=results,photos=photos,p_values=p_values)
+        return render_template('main.html',results=results,photos=photos,p_values=p_values)
     else:
-        return render_template('index.html')
+        return render_template('main.html')
 
 @app.route('/detail/<string:id>/<p_ref>')
 def detail(id,p_ref):
@@ -74,4 +74,4 @@ def dated_url_for(endpoint, **values):
 
 if __name__=='__main__':
     app.run(debug=True)
-    # app.run("0.0.0.0")
+    #app.run("0.0.0.0")
