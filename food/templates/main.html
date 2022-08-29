@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ごはんたべたべあぷり</title>
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link href="http://fonts.googleapis.com/css?family=Chivo" rel="stylesheet" type="static/css/nyan.css">
+		<link href="http://fonts.googleapis.com/css?family=Donegal+One" rel="stylesheet" type="static/css/nyan.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/nyan.css') }}">
+	</head>
+	<body>
+		<header class="global-header">
+			<h1>ごはんたべたべあぷり</h1>
+		
+			<h1>
+				<!-- <form action="/search_index" class="word" method="POST">
+					<input type="text" class="word" name="word" placeholder="ラーメン？"> -->
+				<form action="/search_index" class="word" method="POST">
+						<input type="text" class="word" name="word" placeholder="ラーメン？" id ="placeholder">
+					<a href="{{url_for('search_index')}}">
+						<button type="submit" value="register">検索</button>
+					</a>
+				</form>
+			</h1>
+		</header><!-- /header -->
+		<div class="site_box" style="background-image:linear-gradient(-210deg, #BC32A4 0%, #E03768 50%, #F67C33 100%); opacity:0.9;">
+			<h2 class="intro_p" style="color:white;"><b>半径10㎞以内のおすすめ！</b>
+			</h2>
+		</div>
+		
+		<div id="container">
+			{% for result in results %}{% set A_list_loop = loop %}
+					{% for photo in photos %}
+						{% if loop.index==A_list_loop.index %}
+							<div class="grid">
+								<a href="{{url_for('detail',id=result['place_id'],p_ref=p_values[loop.index-1])}}">
+									<div class="imgholder">
+										<img class="index_image_index" src="{{photo}}" >
+									</div>
+								</a>
+							</div>
+						{% endif %}
+					{% endfor %}
+			{% endfor %}
+		</div>
+
+		<script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+		<script src="{{url_for('static', filename='js/js.js')}}"></script>
+
+	</body>
+</html>

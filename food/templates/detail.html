@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>詳細画面テスト</title>
+        <meta name="description" content="詳細画面のテストです。">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/detail.css') }}">
+    </head>
+
+    <body>
+        <header class="global-header">
+            <button onclick="history.back()" class="btn-pill">&laquo;</button>
+            <h1>{{details.result.name}}</h1>
+        </header>
+
+        <div class="imgholder">
+            <img class="food" src="{{photo}}" >
+        </div>
+        
+        <p>
+            ・開店状況
+        </p>
+        
+        {% if details.result.opening_hours.open_now == True %}
+            <p style="color:rgb(235, 111, 117)">
+                営業中
+            </p>
+        {% else %}
+            <p>
+                準備中
+            </p>
+        {% endif %}
+        <div id="map" style="width:100%; height:200px;"></div>
+            <script>
+                let loc = {{details.result.geometry.location|tojson}};
+                let n = {{details.result.name|tojson}};
+                function initMap() {
+                    var latlng = new google.maps.LatLng(loc.lat,loc.lng);
+                    var opts = {
+                        zoom: 15,
+                        center: latlng
+                    };
+                    var map = new google.maps.Map(document.getElementById("map"), opts);
+                    var marker = new google.maps.Marker({
+                        position: latlng,
+                        map : map
+                    });
+                    var infoWindow = new google.maps.InfoWindow({
+                        content: n
+                    });
+                    google.maps.event.addListener(marker, 'click', function() {
+		                infoWindow.open(map, marker); 
+                    });
+                }
+            </script>
+   
+
+        <p>
+            ・電話番号
+        </p>
+        <p>
+            {{details.result.formatted_phone_number}}
+        </p><p>
+            ・営業時間
+        </p>
+        <p>
+            {{details.result.opening_hours.weekday_text.0}}
+        </p>
+        <p>
+            {{details.result.opening_hours.weekday_text.1}}
+        </p>
+        <p>
+            {{details.result.opening_hours.weekday_text.2}}
+        </p>
+        <p>
+            {{details.result.opening_hours.weekday_text.3}}
+        </p>
+        <p>
+            {{details.result.opening_hours.weekday_text.4}}
+        </p>
+        <p>
+            {{details.result.opening_hours.weekday_text.5}}
+        </p>
+        <p>
+            {{details.result.opening_hours.weekday_text.6}}
+        </p>
+
+        <p>
+            ・住所
+        </p>
+        <p>
+            {{details.result.vicinity}}
+        </p>
+
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_j3p1GZ9FWKt5Do_yRBdi_FvIFgNgqyQ&callback=initMap">
+        </script>
+    </body>
+</html>
